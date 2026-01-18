@@ -1,0 +1,42 @@
+/* Given a string consisting of lowercase alhabets, return the first non-repeating character. Return # othrwise.
+
+aabbccdeeff
+ababceffeg
+abbbc
+a - 1
+b - 2 -> b - 0 
+c - 3
+*/
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class NonRepeat {
+    
+    public static void findRep(String s) {
+        Map<Character, Integer> m = new HashMap<>();
+    Integer counter = 0;
+    for(int i=0;i<s.length();i++) {
+        if(!m.containsKey(s.charAt(i))) {
+            m.put(s.charAt(i),counter+1);
+        } else {
+            m.put(s.charAt(i),0);
+        }
+    }
+    int minVal = Integer.MAX_VALUE;
+    Character minKey = null;
+    for(Map.Entry<Character, Integer> entry : m.entrySet()) {
+        if (entry.getValue() < minVal && entry.getValue()!=0) {
+            minVal = entry.getValue();
+            minKey = entry.getKey();
+        }
+    }
+    System.out.println(minKey);
+    }
+     
+    public static void main(String args[]) {
+        String s = "abbbc";
+        findRep(s);
+    }
+        
+}
